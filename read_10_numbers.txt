@@ -1,0 +1,27 @@
+#include <stdio.h>
+
+int main() {
+    
+    int numbers[10]; 
+    printf("Please enter 10 numbers between 0 and 9:\n");
+    for (int i = 0; i < 10; i++) {
+        do {
+            printf("Enter number %d: ", i + 1);
+            scanf("%d", &numbers[i]);
+            if (numbers[i] < 0 || numbers[i] > 9) {
+                printf("Invalid input. Please enter a number between 0 and 9.\n");
+            }
+        } while (numbers[i] < 0 || numbers[i] > 9);
+    }
+
+    printf("You entered the following numbers: [");
+    for (int i = 0; i < 10; i++) {
+        if (i == 9) {
+            printf("%d]", numbers[i]);
+        } else {
+            printf("%d, ", numbers[i]);
+        }
+    }
+
+    return 0;
+}

@@ -1,0 +1,21 @@
+#include <stdio.h>
+
+int main() {
+    int n;
+    do {
+        printf("Digite um número inteiro positivo: ");
+        scanf("%d", &n);
+        if (n <= 0) {
+            printf("O número deve ser positivo.\n");
+        }
+    } while(n <= 0);
+
+    printf("Divisores de %d: ", n);
+    for (int i = 1; i <= n; i++) {
+        if (n % i == 0) {
+            printf("%d ", i);
+        }
+    }
+    printf("\n");
+    return 0;
+}
