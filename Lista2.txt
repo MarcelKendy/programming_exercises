@@ -1,0 +1,326 @@
+1 - 
+#include <stdio.h>
+
+// Função para calcular o comprimento da string
+int comprimentoString(char str[]) {
+    int i = 0;
+    while (str[i] != '\0') {
+        i++;
+    }
+    return i;
+}
+
+// Função para verificar se a string é um palíndromo
+int ehPalindromo(char str[]) {
+    int inicio = 0;
+    int fim = comprimentoString(str) - 1;
+
+    while (fim > inicio) {
+        if (str[inicio] != str[fim]) {
+            return 0; // Não é um palíndromo
+        }
+        inicio++;
+        fim--;
+    }
+
+    return 1; // É um palíndromo
+}
+
+int main() {
+    char str[100]; // Tamanho máximo da string, ajuste conforme necessário
+
+    // Solicitar entrada do usuário
+    printf("Digite uma string: ");
+    scanf("%s", str);
+
+    // Verificar se é um palíndromo
+    if (ehPalindromo(str)) {
+        printf("A string é um palíndromo.\n");
+    } else {
+        printf("A string não é um palíndromo.\n");
+    }
+
+    return 0;
+}
+
+
+2-
+#include <stdio.h>
+
+struct Vetor {
+    float x;
+    float y;
+    float z;
+};
+
+// Função para somar dois vetores no espaço R³
+void soma(struct Vetor *v1, struct Vetor *v2, struct Vetor *res) {
+    res->x = v1->x + v2->x;
+    res->y = v1->y + v2->y;
+    res->z = v1->z + v2->z;
+}
+
+int main() {
+    struct Vetor vetor1, vetor2, resultado;
+
+    // Solicitar entrada do usuário para o primeiro vetor
+    printf("Digite as componentes do primeiro vetor (x y z): ");
+    scanf("%f %f %f", &vetor1.x, &vetor1.y, &vetor1.z);
+
+    // Solicitar entrada do usuário para o segundo vetor
+    printf("Digite as componentes do segundo vetor (x y z): ");
+    scanf("%f %f %f", &vetor2.x, &vetor2.y, &vetor2.z);
+
+    // Chamar a função soma para calcular o resultado
+    soma(&vetor1, &vetor2, &resultado);
+
+    // Imprimir o resultado
+    printf("A soma dos vetores resulta em: (%.2f, %.2f, %.2f)\n", resultado.x, resultado.y, resultado.z);
+
+    return 0;
+}
+
+3 -
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+// Função para lançar a moeda
+int lancaMoeda() {
+    return rand() % 2; // Retorna 0 para Cara, 1 para Coroa
+}
+
+int main() {
+    srand(time(NULL)); // Inicializa a semente do gerador de números aleatórios com o tempo atual
+
+    int caraCount = 0, coroaCount = 0;
+    int lancamentos = 100;
+
+    for (int i = 0; i < lancamentos; ++i) {
+        int resultado = lancaMoeda();
+
+        if (resultado == 0) {
+            printf("Cara\n");
+            caraCount++;
+        } else {
+            printf("Coroa\n");
+            coroaCount++;
+        }
+    }
+
+    printf("\nResultados:\nCara: %d vezes\nCoroa: %d vezes\n", caraCount, coroaCount);
+
+    return 0;
+}
+
+4-
+#include <stdio.h>
+#include <math.h>
+
+// Função para calcular a hipotenusa
+double calcularHipotenusa(double a, double b) {
+    return sqrt(a * a + b * b);
+}
+
+int main() {
+    double catetoA, catetoB;
+
+    // Solicitar entrada do usuário para os catetos
+    printf("Digite o valor do cateto a: ");
+    scanf("%lf", &catetoA);
+
+    printf("Digite o valor do cateto b: ");
+    scanf("%lf", &catetoB);
+
+    // Calcular a hipotenusa usando a função
+    double hipotenusa = calcularHipotenusa(catetoA, catetoB);
+
+    // Imprimir o resultado
+    printf("A hipotenusa do triângulo é: %.2lf\n", hipotenusa);
+
+    return 0;
+}
+
+5-
+#include <stdio.h>
+
+int main() {
+    int matriz[5][5];
+    int i, j;
+    int somaDiagonal = 0;
+
+    // Solicitar entrada do usuário para os elementos da matriz
+    printf("Digite os elementos da matriz 5x5:\n");
+    for (i = 0; i < 5; ++i) {
+        for (j = 0; j < 5; ++j) {
+            printf("Matriz[%d][%d]: ", i, j);
+            scanf("%d", &matriz[i][j]);
+        }
+    }
+
+    // Imprimir elementos da diagonal secundária
+    printf("\nElementos da diagonal secundária: ");
+    for (i = 0; i < 5; ++i) {
+        for (j = 0; j < 5; ++j) {
+            if (i + j == 4) {
+                printf("%d ", matriz[i][j]);
+                somaDiagonal += matriz[i][j];
+            }
+        }
+    }
+
+    // Imprimir soma dos elementos da diagonal secundária
+    printf("\nSoma da diagonal secundária: %d\n", somaDiagonal);
+
+    return 0;
+}
+
+
+6-
+#include <stdio.h>
+
+// Função para calcular o comprimento da string
+int comprimentoString(char str[]) {
+    int i = 0;
+    while (str[i] != '\0') {
+        i++;
+    }
+    return i;
+}
+
+// Função para concatenar duas strings
+void concatenarStrings(char str1[], char str2[], char resultado[]) {
+    int i, j;
+
+    // Copiar a primeira string para o resultado
+    for (i = 0; str1[i] != '\0'; ++i) {
+        resultado[i] = str1[i];
+    }
+
+    // Concatenar a segunda string ao resultado
+    for (j = 0; str2[j] != '\0'; ++j) {
+        resultado[i + j] = str2[j];
+    }
+
+    // Adicionar o caractere nulo de término da string
+    resultado[i + j] = '\0';
+}
+
+int main() {
+    char primeiroNome[50], ultimoNome[50], nomeDoMeio[50], nomeCompleto[150];
+
+    // Solicitar entrada do usuário para os três nomes
+    printf("Digite o primeiro nome: ");
+    scanf("%s", primeiroNome);
+
+    printf("Digite o nome do meio: ");
+    scanf("%s", nomeDoMeio);
+
+    printf("Digite o último nome: ");
+    scanf("%s", ultimoNome);
+
+    // Concatenar os três nomes
+    concatenarStrings(primeiroNome, nomeDoMeio, nomeCompleto);
+    concatenarStrings(nomeCompleto, ultimoNome, nomeCompleto);
+
+    // Imprimir o nome completo
+    printf("O nome completo é: %s\n", nomeCompleto);
+
+    return 0;
+}
+
+7-
+
+#include <stdio.h>
+
+// Definição da estrutura Pessoa
+struct Pessoa {
+    char nome[50];
+    float altura;
+    float peso;
+};
+
+// Função para calcular e imprimir o IMC de uma pessoa
+void calculaImc(struct Pessoa pessoa) {
+    float imc = pessoa.peso / (pessoa.altura * pessoa.altura);
+    printf("IMC de %s: %.2f\n", pessoa.nome, imc);
+}
+
+int main() {
+    // Criar uma variável do tipo Pessoa para armazenar 30 indivíduos
+    struct Pessoa pessoas[30];
+
+    // Entrar com os dados de cada pessoa
+    for (int i = 0; i < 30; ++i) {
+        printf("Entre com os dados da pessoa %d:\n", i + 1);
+        printf("Nome: ");
+        scanf("%s", pessoas[i].nome);
+        printf("Altura (em metros): ");
+        scanf("%f", &pessoas[i].altura);
+        printf("Peso (em quilogramas): ");
+        scanf("%f", &pessoas[i].peso);
+    }
+
+    // Calcular e imprimir o IMC para cada pessoa
+    for (int i = 0; i < 30; ++i) {
+        calculaImc(pessoas[i]);
+    }
+
+    return 0;
+}
+
+8-
+
+#include <stdio.h>
+
+// Função para preencher um vetor
+void preencheVetor(int *vet, int n) {
+    printf("Entre com os elementos do vetor:\n");
+    for (int i = 0; i < n; ++i) {
+        printf("Vet[%d]: ", i);
+        scanf("%d", &vet[i]);
+    }
+}
+
+// Função para imprimir um vetor
+void imprimeVetor(int *vet, int n) {
+    printf("Elementos do vetor:\n");
+    for (int i = 0; i < n; ++i) {
+        printf("%d ", vet[i]);
+    }
+    printf("\n");
+}
+
+// Função para retornar o maior elemento de um vetor
+int retornaMaiorElemento(int *vet, int n) {
+    int maior = vet[0];
+    for (int i = 1; i < n; ++i) {
+        if (vet[i] > maior) {
+            maior = vet[i];
+        }
+    }
+    return maior;
+}
+
+int main() {
+    int tamanhoVetor;
+    
+    // Solicitar o tamanho do vetor
+    printf("Digite o tamanho do vetor: ");
+    scanf("%d", &tamanhoVetor);
+
+    // Alocar espaço para o vetor dinamicamente
+    int *vetor = (int *)malloc(tamanhoVetor * sizeof(int));
+
+    // Chamar as funções utilizando passagem de parâmetro por referência
+    preencheVetor(vetor, tamanhoVetor);
+    imprimeVetor(vetor, tamanhoVetor);
+
+    // Imprimir o maior elemento do vetor
+    printf("O maior elemento do vetor é: %d\n", retornaMaiorElemento(vetor, tamanhoVetor));
+
+    // Liberar a memória alocada para o vetor
+    free(vetor);
+
+    return 0;
+}
